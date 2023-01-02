@@ -72,6 +72,11 @@ public:
 		cout << "Destructor material "<<nrObiecte <<" cu numele "<<denumire_material<<"." << endl;
 		nrObiecte--;
 	}
+	friend ostream& operator<<(ostream& afisare, Material& m)
+	{
+		afisare << "Materialul " << m.cod_material << " are denumirea " << m.denumire_material << " si pretul " << m.pm << endl;
+		return afisare;
+	}
 	friend istream& operator>>(istream& consola, Material& m);
 };
 int Material::nrObiecte = -1;
@@ -165,7 +170,15 @@ public:
 		return pret * cantitate;
 	}*/
 
-	
+	friend ostream& operator<<(ostream& afisare, Produs_Patiserie& p)
+	{
+		afisare << "Produsul " << p.nume_prod << " contine " << p.nr_mat << ": " << endl;
+		for(int i=0;i<p.nr_mat;p.nr_mat++)
+		{
+			afisare << p.mat[i] << " in cantitatea " << p.cm[i] << endl;
+		}
+		return afisare;
+	}
 	friend istream& operator>>(istream& consola, Produs_Patiserie& p);
 };
 istream& operator>>(istream& consola, Produs_Patiserie& p)
@@ -204,12 +217,16 @@ int main()
 	Material m;
 	cout << "Materialul " << m.get_denumire_material() << " are codul " << m.get_cod_material() << " si pretul " << m.get_pm()<<"." << endl;
 	Material m1("faina", 4);
-	cout << "Materialul " << m1.get_denumire_material() << " are codul " << m1.get_cod_material() << " si pretul " << m1.get_pm() << "." << endl<<endl;
+	cout << "Materialul " << m1.get_denumire_material() << " are codul " << m1.get_cod_material() << " si pretul " << m1.get_pm() << "." << endl << endl;
 	Material m3;
 	cin >> m3;
+	cout << "Materialul " << m3.get_denumire_material() << " are codul " << m3.get_cod_material() << " si pretul " << m3.get_pm() << "." << endl << endl;
+	cout << m3 << endl;
 
-	Produs_Patiserie p2;
-	cin >> p2;
+	//Produs_Patiserie p2;
+	//cin >> p2;
+	cout << p1;
+	
 	
 	return 0;
 }
@@ -226,6 +243,8 @@ int main()
 //id=static
 //destructori
 //apel constructor cu parametri la Produse
+//id=nr pozitiv, mai mare cu 1 fata de id-ul ultimului produs/material inregistrat		vezi S5
+
 
 
 
@@ -233,7 +252,7 @@ int main()
 
 //NEREZOLVATE
 //supraincarcare >> 
-//id=nr pozitiv, mai mare cu 1 fata de id-ul ultimului produs/material inregistrat		vezi S5
+//		Nu poate citi toate materialele necesare pentru prepararea unui produs
 //calcul cel mai scump produs
 //calcul cel mai ieftin produs
 //foloseste fisiere
