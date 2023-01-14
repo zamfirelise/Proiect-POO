@@ -1,7 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string.h>
-#include<fstream>
+#include <fstream>
 #include <iomanip>
 using namespace std;
 
@@ -74,7 +74,7 @@ public:
 	}
 	friend ostream& operator<<(ostream& afisare, Material& m)
 	{
-		afisare << "\nSupraincarcare operator afisare material: \n \tMaterialul " << m.cod_material << " are denumirea " << m.denumire_material << " si pretul " << m.pm << endl;
+		afisare << "\nSupraincarcare operator afisare material:\n\tMaterialul " << m.cod_material << " are denumirea " << m.denumire_material << " si pretul " << m.pm << endl;
 		return afisare;
 	}
 	friend istream& operator>>(istream& consola, Material& m);
@@ -112,19 +112,19 @@ public:
 		cm = nullptr;
 		mat = nullptr;
 	}
-	//Produs_Patiserie(string nume, int nr_mat, float* cantitati, Material* mat)			//CEVA E GRESIT AICI, IN FOR
-	//{
-	//	cout << "Apel constructor cu parametri Produs: " << endl<< "\t";
-	//	this->nume_prod = nume;
-	//	this->nr_mat = nr_mat;
-	//	cm = new float [nr_mat];
-	//	for (int i = 0; i < nr_mat; i++)
-	//	{
-	//		cm[i] = cantitati[i];
-	//		//this->mat[i] = mat[i];
-	//		cout << "iesire din constructor cu parametri produs" << endl;
-	//	}
-	//}
+	Produs_Patiserie(string nume, int nr_mat, float* cantitati, Material* mat)			//CEVA E GRESIT AICI, IN FOR
+	{
+		cout << "Apel constructor cu parametri Produs: " << endl;
+		this->nume_prod = nume;
+		this->nr_mat = nr_mat;
+		cm = new float [nr_mat];
+		for (int i = 0; i < nr_mat; i++)
+		{
+			cm[i] = cantitati[i];
+			//this->mat[i] = mat[i];
+			cout << "\tMaterialul "<<i<<" adaugat." << endl;
+		}
+	}
 
 
 
@@ -177,7 +177,7 @@ public:
 
 	Produs_Patiserie& operator<<(Material& m)
 	{
-		mat[nr_mat++] = m;
+		mat[nr_mat++] = &m;
 		return *this;
 	}
 
@@ -216,43 +216,44 @@ istream& operator>>(istream& consola, Produs_Patiserie& p)
 
 int main()
 {
-	Produs_Patiserie p0;
-	cout << "\tProdusul are denumirea " << p0.get_nume_prod() << " si " << p0.get_nr_mat() << " ingrediente."<<endl;
-	cout << "SUPRAINCARCARE\n" << p0 << endl;
-	float preturi1[] = {1,3,4};
-	float cantitati1[] = { (float)0.2, (float)1.0, (float)1.0 };
-	int coduri1[] = { 0,1,2 };
-	Material m;
-	Material m1("faina", 4);
-	Material m3, m4;
-	cin >> m3;
-	Material ingrediente[] = { m1, m3, m4 };
-	//Produs_Patiserie  p1("covrig", 3, cantitati1, ingrediente);
-	//float* cantitati = p1.get_cm();
-	//cout << "\nSUPRAINCARCARE prod cu param\n" << p1 << endl;
-	//cout << "\tProdusul p1 are denumirea " << p1.get_nume_prod() << ", " << p1.get_nr_mat() << " ingrediente, folosite in cantitatile "<<cantitati[0];
-	//for (int i = 1; i < p1.get_nr_mat(); i++)
-		//cout << ", " << cantitati[i];
-	//cout << ".\n"; //afisare simpla produs creat prin constructor cu parametri
-//Afisare material cu/fara parametri prin getteri/operator supraincarcat
+	//Produs_Patiserie p0;
+	//cout << "\tProdusul are denumirea " << p0.get_nume_prod() << " si " << p0.get_nr_mat() << " ingrediente." << endl;
+	//cout << "SUPRAINCARCARE\n" << p0 << endl;
+	//float preturi1[] = {1,3,4};
+	//float cantitati1[] = { (float)0.2, (float)1.0, (float)1.0 };
+	//int coduri1[] = { 0,1,2 };
 	//Material m;
-	//cout << m << endl;//afisare material fara parametri prin operator supraincarcat
-	//cout << "\tMaterialul " << m.get_denumire_material() << " are codul " << m.get_cod_material() << " si pretul " << m.get_pm() << "." << endl;//afisare material fara parametri prin getteri
 	//Material m1("faina", 4);
-	//cout << "\tMaterialul " << m1.get_denumire_material() << " are codul " << m1.get_cod_material() << " si pretul " << m1.get_pm() << "." << endl;//afisare material cu parametri prin GETTERI
-	//cout << endl <<"\t" << m1 << endl;//afisare material cu parametri cu operator supraincarcat
 	//Material m3, m4;
-	//cin >> m3;//citire material fara parametri cu operator supraincarcat
-	//cout << m3 << endl << m4;
-	//cout << "\tMaterialul " << m3.get_denumire_material() << " are codul " << m3.get_cod_material() << " si pretul " << m3.get_pm() << "." << endl;//PROBA2
-	//cout << "\tMaterialul " << m4.get_denumire_material() << " are codul " << m4.get_cod_material() << " si pretul " << m4.get_pm() << "." << endl;//PROBA2
+	//cin >> m3;
+	//Material ingrediente[] = { m1, m3, m4 };
+	////Produs_Patiserie  p1("covrig", 3, cantitati1, ingrediente);
+	////float* cantitati = p1.get_cm();
+	////cout << "\nSUPRAINCARCARE prod cu param\n" << p1 << endl;
+	////cout << "\tProdusul p1 are denumirea " << p1.get_nume_prod() << ", " << p1.get_nr_mat() << " ingrediente, folosite in cantitatile "<<cantitati[0];
+	////for (int i = 1; i < p1.get_nr_mat(); i++)
+	//	//cout << ", " << cantitati[i];
+	////cout << ".\n"; //afisare simpla produs creat prin constructor cu parametri
+	////Material m;
+	////Material m1("faina", 4);
+	////Material m3, m4;
+	////cin >> m3;//citire material fara parametri cu operator supraincarcat
 
 
-	////Produs_Patiserie p2;
-	////cin >> p2;
+	//Produs_Patiserie p2;
+	//cin >> p2;
 	//cout << p0;//afisare produs fara parametri cu operator supraincarcat
 	
-	
+//PROBA CONSTRUCTOR CU PARAMETRI PRODUS
+	float cantitati1[] = { (float)0.2, (float)1.0, (float)1.0 };
+	Material m0("apa", 0.3), m1("faina", 4), m2("drojdie", 1.3);
+	Material ingrediente[] = { m0, m1, m2 };
+	Produs_Patiserie  p1("covrig", 3, cantitati1, ingrediente);
+	cout << p1;
+
+
+
+
 	return 0;
 }
 
@@ -269,7 +270,6 @@ int main()
 //apel constructor cu parametri la Produse
 //id=nr pozitiv, mai mare cu 1 fata de id-ul ultimului produs/material inregistrat		vezi S5
 
-
 //3.01.2023
 //pot afisa SI citi informatii despre unul sau mai multe Materiale (cu parametri sau fara) atat prin getteri, cat si prin operatorul de afisare Supraincarcat
 //supraincarcare << material fara param
@@ -277,6 +277,9 @@ int main()
 //PRODUS
 //supraincarcare << produs fara param
 //prod fara param<< prin getteri
+
+//14.01.2023
+//
 
 
 // modificare test
